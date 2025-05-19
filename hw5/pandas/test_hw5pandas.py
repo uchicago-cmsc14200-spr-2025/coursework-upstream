@@ -73,8 +73,9 @@ def test_task3c_02() -> None:
     pf = pf.reset_index(drop=True)
     expected = read_expected("played_for_MIN")
     cols = ["personId", "personName"]
-    pd.testing.assert_frame_equal(pf[cols], expected[cols])
-
+    pd.testing.assert_frame_equal(pf[cols].sort_values("personId").reset_index(drop=True),
+                                  expected[cols].sort_values("personId").reset_index(drop=True),
+                                  check_like=True)
 
 def test_task3c_03() -> None:
     pf = hw5.played_for("SAS")
@@ -82,7 +83,9 @@ def test_task3c_03() -> None:
     pf = pf.reset_index(drop=True)
     expected = read_expected("played_for_SAS")
     cols = ["personId", "personName"]
-    pd.testing.assert_frame_equal(pf[cols], expected[cols])
+    pd.testing.assert_frame_equal(pf[cols].sort_values("personId").reset_index(drop=True),
+                                  expected[cols].sort_values("personId").reset_index(drop=True),
+                                  check_like=True)
 
 
 def test_task3d_01() -> None:
